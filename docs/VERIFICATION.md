@@ -18,8 +18,8 @@ Verified on 6 October 2026 with Python 3.12 on macOS.
 - 2 additional dashboard cases passed against both databases, verifying that selected comparisons survive new history entries.
 - Migration schema matched the SQLAlchemy models; upgrade/downgrade/upgrade passed on both databases.
 - Ruff lint and formatting checks passed; dependency consistency check passed.
-- Docker Compose configuration validated. Docker image build/container execution were not tested because the local Docker daemon was not running.
-- Published as [AryanAI0035/releaseguard](https://github.com/AryanAI0035/releaseguard). Hosted validation status is recorded in [GitHub Actions](https://github.com/AryanAI0035/releaseguard/actions).
+- Docker Compose configuration validated locally. The Docker image built successfully in GitHub Actions; the full Compose stack was not run locally.
+- [GitHub Actions run 37493104132](https://github.com/AryanAI0035/releaseguard/actions/runs/37493104132) passed all 42 tests with SQLite and PostgreSQL, Ruff checks, and the Docker build.
 - One third-party deprecation warning remains: Starlette's test client currently warns about its HTTPX compatibility path. This did not fail the tests.
 
 ## Fresh evaluation of the revised policy
@@ -42,7 +42,7 @@ Both methods detected all 20 faulty test runs and flagged 2 of 10 healthy test r
 
 Raw novelty flags were noisy: both raw methods flagged 9 of 10 healthy test runs. The operational policy therefore also requires p95 to exceed its healthy training reference by both 30% and 10 ms. The raw results remain visible in the evaluation JSON and dashboard.
 
-## Development provenance and limits
+## Earlier evaluation and limitations
 
 The first 70-run collection revealed excessive alerts. Its original manifest, CSV, and evaluation are preserved in `docs/benchmarks/initial-*`. It was used as development feedback. The practical latency-change budget already existed in the release-comparison specification; the revised ML policy applies it to both methods. A new collection with different seeds evaluated that revised policy.
 

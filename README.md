@@ -1,35 +1,32 @@
 # ReleaseGuard
 
-**Catch broken API responses and slower releases with Python and machine learning.**
+**API regression testing with release comparisons and latency anomaly detection.**
 
 [![Checks](https://github.com/AryanAI0035/releaseguard/actions/workflows/checks.yml/badge.svg)](https://github.com/AryanAI0035/releaseguard/actions/workflows/checks.yml)
 
-ReleaseGuard compares two versions of a small application and shows what changed: missing response fields, server errors, timeouts, or slower responses. It combines ordinary software checks with an evaluated Isolation Forest model, and keeps the evidence in a database.
+ReleaseGuard checks whether an API still works correctly after an update. It compares releases, records failed requests, and flags changes in response time. A Streamlit dashboard shows the results, while FastAPI and a background worker handle the checks.
 
 **Stack:** Python · FastAPI · HTTPX · SQLAlchemy · PostgreSQL / SQLite · scikit-learn · Streamlit · Docker · GitHub Actions
 
-## In simple words
+## What problem does it solve?
 
 Imagine an online store works correctly today. After an update, the order summary becomes slow or stops returning the revenue field. ReleaseGuard sends requests to both versions, checks the replies, and shows which endpoint needs attention.
 
-- **An API** is how programs request information from each other.
-- **A release** is a version of the application.
-- **A regression** is something that worked before and became worse after an update.
-- **The ML model** looks for unusual response timings. Ordinary checks still catch broken responses and errors without a model.
+A regression is a problem introduced by a change. ReleaseGuard checks response fields and types, request failures, and latency so those problems are easier to spot.
 
 This repository includes a small store API with deliberately faulty versions, so you can reproduce the entire demo locally without paid services or API keys.
 
-## See it working
+## Dashboard
 
-This is a **real screenshot from the local app**, showing a healthy release compared with a release that has inconsistent response times.
+Comparison of a healthy release with the `high-jitter` release:
 
-<img src="docs/dashboard.jpg" alt="ReleaseGuard comparison: orders summary p95 rises from 15.6 ms to 114.7 ms and receives a performance warning; products stay stable" width="420">
+<img src="docs/dashboard.jpg" alt="ReleaseGuard comparison: orders summary p95 rises from 15.6 ms to 114.7 ms and receives a performance warning; products stay stable" width="1000">
 
-The order summary's p95 increased from **15.6 ms to 114.7 ms**, while the products endpoint stayed close to its baseline. **p95** means 95% of measured responses were at or below that time. These values belong to this demo run; they are not a general performance benchmark.
+The order summary's p95 increased from **15.6 ms to 114.7 ms**, while the products endpoint stayed close to its baseline. **p95** means 95% of measured responses were at or below that time. Timings shown here come from the included local demo.
 
-## What you can do
+## Features
 
-| Feature | What it gives you |
+| Feature | Description |
 |---|---|
 | Compare releases | See changes in response correctness and latency |
 | Validate response contracts | Identify missing fields, incorrect types, and invalid responses |
@@ -37,9 +34,9 @@ The order summary's p95 increased from **15.6 ms to 114.7 ms**, while the produc
 | Inspect run history | View saved measurements and the configuration used for each run |
 | Queue work safely | Repeated submission of the same request returns the same logical run |
 | Recover interrupted work | A worker lease and bounded attempts handle interrupted execution |
-| Evaluate ML honestly | Compare Isolation Forest with a simpler threshold baseline on held-out runs |
+| Evaluate anomaly detection | Compare Isolation Forest with a simpler threshold baseline on held-out runs |
 
-## Quick start: Python, no Docker needed
+## Quick start
 
 Use **Python 3.12** for the tested setup. Git and an Internet connection are needed for the initial download and dependency installation.
 
@@ -114,7 +111,7 @@ python -m scripts.evaluate
 python -m scripts.demo
 ```
 
-The quick preset collects 28 independent experiments: 10 healthy training runs, 5 healthy validation runs, 5 healthy test runs, and 8 faulty test runs. Each run has 3 windows of 25 probes per endpoint. It is a smoke evaluation, not a large research benchmark.
+The quick preset collects 28 independent experiments: 10 healthy training runs, 5 healthy validation runs, 5 healthy test runs, and 8 faulty test runs. Each run has 3 windows of 25 probes per endpoint. Each window is a batch of requests used to calculate latency statistics.
 
 For a larger collection:
 
@@ -124,7 +121,7 @@ python -m scripts.train --manifest results/full-manifest.json
 python -m scripts.evaluate --manifest results/full-manifest.json --output results/full-evaluation.json
 ```
 
-The full preset uses 30/10/10/20 runs in those partitions. It randomizes collection order and holds out complete experiment runs. Dataset collection makes real HTTP requests; it does not fabricate model accuracy.
+The full preset collects 30 training runs, 10 validation runs, and 30 test runs (10 healthy and 20 faulty). Collection order is randomized, and complete runs stay in separate partitions to avoid data leakage.
 
 With Docker, execute the same commands inside the API container, adding `--api http://localhost:8000` to the experiment command:
 
@@ -134,37 +131,24 @@ docker compose exec api python -m scripts.train
 docker compose exec api python -m scripts.evaluate
 ```
 
-New runs use trained models automatically. Historical reports retain the model state used when they ran. The evaluation command independently scores the held-out measurements with frozen models and saves JSON plus window-level CSV. The dashboard reads `results/evaluation.json` by default.
+New runs use trained models automatically. Historical reports retain the model state used when they ran. The evaluation command independently scores the held-out measurements with frozen models and saves JSON plus window-level CSV. The dashboard reads `results/evaluation.json` by default. For a custom output file, set `EVALUATION_PATH` before starting the dashboard.
 
 ## How it works
 
 The dashboard asks the monitor to queue a run. A separate worker makes the HTTP requests, checks their responses, and saves results. This keeps slow checks out of the API request path.
 
-
-```mermaid
-flowchart LR
-    UI[Streamlit dashboard] --> API[FastAPI monitor]
-    API --> DB[(PostgreSQL / local SQLite)]
-    DB --> W[Python worker]
-    W --> D[Versioned demo APIs]
-    W --> C[Response contracts + latency checks]
-    W --> ML[Optional Isolation Forest]
-    ML --> W
-    W --> DB
-```
+![ReleaseGuard architecture: dashboard, monitor API, database, worker, demo API, and checks](docs/architecture.png)
 
 1. Register a project, supported endpoint contracts, and release variants.
 2. Queue a run with an idempotency key and bounded workload.
 3. Worker claims the persisted run, warms each endpoint, and performs asynchronous probes.
 4. Store measurements and window summaries transactionally.
-5. Apply a compatible local model when available; otherwise record why ML abstained.
+5. Apply a trained model when one matches the workload; otherwise record why scoring was skipped.
 6. Compare completed runs with matching workloads and contract snapshots.
-
-Supported demo variants: `healthy`, `schema-bug`, `slow-query`, `intermittent-500`, `timeout`, and `high-jitter`. Faults affect `/orders/summary`; the other endpoints act as controls. The slow-query variant simulates delay—it does not profile a real slow query.
 
 ## Measured results
 
-A fresh controlled experiment used **70 runs**: 30 healthy training runs, 10 healthy validation runs, and 30 held-out test runs. The test partition contained 10 healthy runs and 20 runs with performance faults.
+The recorded experiment used **70 runs**: 30 healthy training runs, 10 healthy validation runs, and 30 held-out test runs. The test partition contained 10 healthy runs and 20 runs with performance faults.
 
 | Metric on held-out data | Isolation Forest + latency budget | Threshold baseline + same budget |
 |---|---:|---:|
@@ -175,40 +159,36 @@ A fresh controlled experiment used **70 runs**: 30 healthy training runs, 10 hea
 | Faulty runs detected | 20 / 20 | 20 / 20 |
 | Healthy runs flagged | 2 / 10 | 2 / 10 |
 
-**The ML model did not beat the simpler baseline in this experiment.** Raw novelty scoring flagged 9 of 10 healthy test runs for both methods. The operational policy therefore also requires a meaningful latency increase: more than 30% **and** 10 ms. Both raw and filtered results are retained.
+Both methods produced the same results in this experiment. Raw novelty scoring flagged 9 of 10 healthy test runs for both methods. The operational policy therefore also requires a meaningful latency increase: more than 30% **and** 10 ms. Both raw and filtered results are retained.
 
-These are real HTTP measurements of synthetic faults in a local testbed, not production accuracy. See the [saved evaluation](docs/benchmarks/final-evaluation.json), [window-level measurements](docs/benchmarks/final-evaluation.csv), and [verification record](docs/VERIFICATION.md) for the evidence and limitations.
+The experiment measures HTTP responses from the included demo application with injected faults. See the [saved evaluation](docs/benchmarks/final-evaluation.json), [window-level measurements](docs/benchmarks/final-evaluation.csv), and [verification record](docs/VERIFICATION.md) for the evidence and limitations.
 
-## ML design
+## How the ML model works
 
-- One model per endpoint and workload profile.
-- Features: log-transformed median latency, p95 latency, and latency interquartile range.
-- Fit only healthy training windows; require at least 20 training and 5 validation windows.
-- Choose the anomaly threshold using the 95th percentile of held-out healthy validation scores.
-- Operational flags also require p95 to exceed its healthy training reference by both 30% and 10 ms. Apply this same practical-change budget to ML and the baseline.
-- Compare with a robust latency-threshold baseline using the same validation data.
-- Never input release names, injected fault labels, seed, or severity to the model.
-- Abstain when a window has failures/censored responses or fewer than 20 valid responses.
-- Report window-level and run-level performance, confusion counts, and false alerts.
-- Preserve raw novelty results separately, so the practical-change filter cannot hide noisy model behavior.
+Isolation Forest learns the usual response-time patterns for each endpoint and workload. It uses three features: median latency, p95 latency, and the interquartile range (the spread of the middle half of response times). Features are log-transformed before training.
 
-The model does **not** diagnose root cause. Scores are not confidence probabilities. A validation-window threshold does not guarantee the same test or run-level false-alert rate. A simpler baseline may outperform ML; the report shows both.
+- Training and validation use healthy runs only.
+- The threshold is the 95th percentile of healthy validation scores.
+- An alert also requires p95 to exceed the training reference by more than 30% and 10 ms.
+- A threshold baseline uses the same data and latency requirement for comparison.
+- Scoring is skipped for windows with failed requests or fewer than 20 valid responses.
+- Release names and injected fault labels are excluded from model inputs.
 
-An initial experiment exposed excessive raw novelty alerts on healthy timing variation. That report is preserved in `docs/benchmarks/initial-evaluation.json`. The practical latency budget was already specified for release comparisons; the revised ML policy applies it consistently and is evaluated on newly collected runs. Do not interpret good budget-filtered results as proof that ML outperforms a simple rule.
+Raw scores and filtered alerts are saved separately. The [design notes](docs/DESIGN.md) explain the alert policy and the earlier experiment that led to it. Anomaly scores show unusual timing; they are not confidence probabilities or a diagnosis of the cause.
 
-## Reliability behavior
+## Run handling
 
 - Same idempotency key and payload returns the same logical run; conflicting reuse returns 409.
-- Endpoint configurations are snapshotted for historical interpretation.
+- Each run saves a copy of its endpoint configuration.
 - Worker ownership uses an atomic conditional database update and a periodically renewed lease.
 - Interrupted measurements restart as a new attempt. Reports exclude partial old attempts.
 - Attempts are bounded; exhausted work is marked failed.
 - Request inactivity timeouts and total wall-clock deadlines are separate.
 - Failed probes are not retried, which keeps regression evidence visible.
 - Missing/corrupt ML artifacts do not disable functional checks.
-- The comparison rule is visible: a p95 increase greater than both 30% and 10 ms, or an ML flag, produces a performance warning.
+- A p95 increase greater than both 30% and 10 ms, or a filtered ML alert, produces a performance warning.
 
-These are controlled active-probe measurements. Matching workload settings do not remove all host-load confounders. No warning is not a guarantee of release safety.
+Comparisons require matching workloads and response contracts. Machine load can still affect timing, so a performance warning should be investigated alongside the request evidence.
 
 ## Tests and code quality
 
@@ -225,7 +205,7 @@ export TEST_DATABASE_URL="postgresql+psycopg://USER:PASSWORD@localhost/releasegu
 pytest -q
 ```
 
-Tests cover real HTTP faults, idempotency (including concurrent submission), worker leases/recovery, partial-attempt exclusion, transaction rollback, model corruption, data leakage checks, API access, and migration upgrade/downgrade. The GitHub workflow runs both database variants with a PostgreSQL service and builds the container. Performance experiments remain separate from timing-sensitive CI assertions.
+**42 tests passed in GitHub Actions**, covering HTTP faults, concurrent run submission, worker recovery, partial-attempt exclusion, transaction rollback, model corruption, data leakage, API access, and migration upgrade/downgrade. The workflow tests SQLite and PostgreSQL, checks lint and formatting, and builds the Docker image. [View the verified run](https://github.com/AryanAI0035/releaseguard/actions/runs/37493104132).
 
 ## Troubleshooting
 
@@ -249,7 +229,7 @@ Tests cover real HTTP faults, idempotency (including concurrent submission), wor
 | API_KEY | empty | Optional key protecting API reads/writes |
 | EVALUATION_PATH | results/evaluation.json | Dashboard evaluation report |
 
-Use the same API key for the API and dashboard. CLI commands support `--api-key`. The local launcher assumes ports 8000, 8001, and 8501 are free. The version-1 monitor intentionally accepts only named read-only demo paths; arbitrary Internet monitoring is outside its scope.
+Use the same API key for the API and dashboard. The demo and experiment commands accept `--api-key`; training and evaluation access the database directly. The local launcher assumes ports 8000, 8001, and 8501 are free. The version-1 monitor intentionally accepts only named read-only demo paths; arbitrary Internet monitoring is outside its scope.
 
 ## Project layout
 
