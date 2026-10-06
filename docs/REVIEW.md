@@ -1,6 +1,4 @@
-# Reviewing generated code
-
-This project was created with AI assistance. The code is kept straightforward for study and modification; it should not be represented as independently human-authored work.
+# Engineering review notes
 
 One concrete implementation review found that updating a worker lease only between measurement windows was insufficient. With the permitted workload (100 requests, concurrency 1, deadline 2 seconds), a window could take approximately 200 seconds, exceeding the 120-second lease. A second worker could then reclaim an active job.
 

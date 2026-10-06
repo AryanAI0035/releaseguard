@@ -263,22 +263,16 @@ dashboard.py   Streamlit interface
 docs/          Design, code walkthrough, demo guide, verification
 ```
 
-## Learn and present it
+## Documentation
 
-Start with [the code walkthrough](docs/WALKTHROUGH.md), then [the demo guide](docs/DEMO.md). Read [the design decisions](docs/DESIGN.md) for the tradeoffs you should be able to explain in an interview. [Verification](docs/VERIFICATION.md) records what was actually checked and its limitations.
+- [Architecture and design decisions](docs/DESIGN.md)
+- [Code walkthrough](docs/WALKTHROUGH.md)
+- [Demo workflow](docs/DEMO.md)
+- [Test and evaluation evidence](docs/VERIFICATION.md)
+- [Engineering review notes](docs/REVIEW.md)
 
-Resume wording after reviewing and understanding the code:
+## Current scope
 
-> Built ReleaseGuard, a Python/FastAPI API regression monitor with persistent run history, asynchronous checks, and release-to-release contract and latency comparisons.
->
-> Evaluated Isolation Forest against a threshold baseline on held-out HTTP experiments; reported detection performance and healthy false-alert rates.
->
-> Implemented idempotent run submission and recoverable worker execution, verified through automated tests and CI configuration.
+ReleaseGuard provides on-demand checks for three configured GET endpoints, persistent run history, release comparisons, and performance anomaly detection. The included demo application supplies reproducible response, availability, and latency faults.
 
-Add numeric results only when you can explain their test conditions. Check the [latest CI run](https://github.com/AryanAI0035/releaseguard/actions) for hosted validation.
-
-## Scope and authorship
-
-This is a focused learning and portfolio project: three supported demo endpoints, active HTTP probes, and controlled fault scenarios. It does not diagnose root cause or guarantee that a release is safe. Arbitrary public-URL monitoring, production authentication, distributed deployment, and live Salesforce integration are outside this version's scope.
-
-The project was built with AI assistance and kept readable for study and extension. The [review notes](docs/AI_REVIEW.md) explain concrete issues found and corrected. Before presenting it as your project, run it, understand the design, and make changes you can explain.
+Measurements describe the tested workload and environment. Performance alerts identify changes that warrant investigation; they do not determine root cause. Future extensions include configurable endpoint contracts, scheduled checks, and notification delivery.

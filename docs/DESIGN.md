@@ -16,7 +16,7 @@ A missing field or HTTP 500 is explicitly wrong. It does not need anomaly detect
 
 Compare Isolation Forest with a robust positive-deviation threshold on the same three transformed features. Both thresholds use the same healthy validation windows. Final test data does not tune either threshold. Run-level reporting avoids pretending correlated windows are independent experimental trials.
 
-The first evaluation exposed excessive novelty alerts on ordinary timing variation. The revised operational policy requires a p95 increase of both 30% and 10 ms from a training-only healthy reference, for both methods. Those are the predeclared release-comparison budgets, not thresholds selected to maximize test accuracy. Preserve the initial evaluation, disclose this development step, and collect new runs for the revised policy. Raw scores/flags remain in the report for honest comparison.
+The first evaluation exposed excessive novelty alerts on ordinary timing variation. The revised operational policy requires a p95 increase of both 30% and 10 ms from a training-only healthy reference, for both methods. Those are the predeclared release-comparison budgets, not thresholds selected to maximize test accuracy. The initial evaluation is preserved, and a fresh collection evaluates the revised policy. Raw scores/flags remain in the report for honest comparison.
 
 ## Fixed target application
 
