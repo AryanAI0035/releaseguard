@@ -19,7 +19,7 @@ Verified on 6 October 2026 with Python 3.12 on macOS.
 - Migration schema matched the SQLAlchemy models; upgrade/downgrade/upgrade passed on both databases.
 - Ruff lint and formatting checks passed; dependency consistency check passed.
 - Docker Compose configuration validated. Docker image build/container execution were not tested because the local Docker daemon was not running.
-- GitHub Actions configuration is included; no repository was published and no hosted CI run was performed.
+- Published as [AryanAI0035/releaseguard](https://github.com/AryanAI0035/releaseguard). Hosted validation status is recorded in [GitHub Actions](https://github.com/AryanAI0035/releaseguard/actions).
 - One third-party deprecation warning remains: Starlette's test client currently warns about its HTTPX compatibility path. This did not fail the tests.
 
 ## Fresh evaluation of the revised policy

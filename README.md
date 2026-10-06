@@ -39,8 +39,6 @@ The order summary's p95 increased from **15.6 ms to 114.7 ms**, while the produc
 | Recover interrupted work | A worker lease and bounded attempts handle interrupted execution |
 | Evaluate ML honestly | Compare Isolation Forest with a simpler threshold baseline on held-out runs |
 
-## Try the demo
-
 ## Quick start: Python, no Docker needed
 
 Use **Python 3.12** for the tested setup. Git and an Internet connection are needed for the initial download and dependency installation.
