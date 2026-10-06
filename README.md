@@ -20,7 +20,7 @@ This repository includes a small store API with deliberately faulty versions, so
 
 Comparison of a healthy release with the `high-jitter` release:
 
-<img src="docs/dashboard.jpg" alt="ReleaseGuard comparison: orders summary p95 rises from 15.6 ms to 114.7 ms and receives a performance warning; products stay stable" width="1000">
+<img src="docs/dashboard-comparison.jpg" alt="ReleaseGuard comparison: orders summary p95 rises from 15.6 ms to 114.7 ms and receives a performance warning; products stay stable" width="1000">
 
 The order summary's p95 increased from **15.6 ms to 114.7 ms**, while the products endpoint stayed close to its baseline. **p95** means 95% of measured responses were at or below that time. Timings shown here come from the included local demo.
 
@@ -137,7 +137,7 @@ New runs use trained models automatically. Historical reports retain the model s
 
 The dashboard asks the monitor to queue a run. A separate worker makes the HTTP requests, checks their responses, and saves results. This keeps slow checks out of the API request path.
 
-![ReleaseGuard architecture: dashboard, monitor API, database, worker, demo API, and checks](docs/architecture.png)
+![ReleaseGuard architecture: dashboard, monitor API, database, worker, demo API, and checks](docs/architecture-overview.png)
 
 1. Register a project, supported endpoint contracts, and release variants.
 2. Queue a run with an idempotency key and bounded workload.

@@ -10,7 +10,7 @@ Verified on 6 October 2026 with Python 3.12 on macOS.
 - CLI demonstration exercised all five fault variants. Schema-bug identified the missing revenue field; slow-query and high-jitter produced performance warnings; intermittent-500 and timeout produced availability failures. Control endpoints had no regression finding in this demonstration.
 - The final demo used the trained model; historical results were not retroactively changed.
 
-![Verified performance comparison](dashboard.jpg)
+![Verified performance comparison](dashboard-comparison.jpg)
 
 ## Tests and dependencies
 
