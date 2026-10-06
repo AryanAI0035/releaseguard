@@ -1,0 +1,237 @@
+{
+  "scope": "Controlled active-probe testbed, not production accuracy",
+  "threshold_policy": "95th percentile of healthy validation scores AND p95 increase exceeding both 30% and 10 ms from training reference",
+  "window_level": {
+    "ml": {
+      "samples": 270,
+      "scored": 270,
+      "abstained": 0,
+      "confusion_matrix": {
+        "tp": 59,
+        "fp": 6,
+        "fn": 1,
+        "tn": 204
+      },
+      "precision": 0.9076923076923077,
+      "recall": 0.9833333333333333,
+      "f1": 0.944,
+      "healthy_false_alert_rate": 0.02857142857142857
+    },
+    "baseline": {
+      "samples": 270,
+      "scored": 270,
+      "abstained": 0,
+      "confusion_matrix": {
+        "tp": 59,
+        "fp": 6,
+        "fn": 1,
+        "tn": 204
+      },
+      "precision": 0.9076923076923077,
+      "recall": 0.9833333333333333,
+      "f1": 0.944,
+      "healthy_false_alert_rate": 0.02857142857142857
+    }
+  },
+  "run_level": {
+    "ml": {
+      "samples": 30,
+      "scored": 30,
+      "abstained": 0,
+      "confusion_matrix": {
+        "tp": 20,
+        "fp": 2,
+        "fn": 0,
+        "tn": 8
+      },
+      "precision": 0.9090909090909091,
+      "recall": 1.0,
+      "f1": 0.9523809523809523,
+      "healthy_false_alert_rate": 0.2
+    },
+    "baseline": {
+      "samples": 30,
+      "scored": 30,
+      "abstained": 0,
+      "confusion_matrix": {
+        "tp": 20,
+        "fp": 2,
+        "fn": 0,
+        "tn": 8
+      },
+      "precision": 0.9090909090909091,
+      "recall": 1.0,
+      "f1": 0.9523809523809523,
+      "healthy_false_alert_rate": 0.2
+    }
+  },
+  "raw_window_level": {
+    "ml": {
+      "samples": 270,
+      "scored": 270,
+      "abstained": 0,
+      "confusion_matrix": {
+        "tp": 59,
+        "fp": 32,
+        "fn": 1,
+        "tn": 178
+      },
+      "precision": 0.6483516483516484,
+      "recall": 0.9833333333333333,
+      "f1": 0.7814569536423841,
+      "healthy_false_alert_rate": 0.1523809523809524
+    },
+    "baseline": {
+      "samples": 270,
+      "scored": 270,
+      "abstained": 0,
+      "confusion_matrix": {
+        "tp": 59,
+        "fp": 41,
+        "fn": 1,
+        "tn": 169
+      },
+      "precision": 0.59,
+      "recall": 0.9833333333333333,
+      "f1": 0.7374999999999999,
+      "healthy_false_alert_rate": 0.19523809523809524
+    }
+  },
+  "raw_run_level": {
+    "ml": {
+      "samples": 30,
+      "scored": 30,
+      "abstained": 0,
+      "confusion_matrix": {
+        "tp": 20,
+        "fp": 9,
+        "fn": 0,
+        "tn": 1
+      },
+      "precision": 0.6896551724137931,
+      "recall": 1.0,
+      "f1": 0.8163265306122449,
+      "healthy_false_alert_rate": 0.9
+    },
+    "baseline": {
+      "samples": 30,
+      "scored": 30,
+      "abstained": 0,
+      "confusion_matrix": {
+        "tp": 20,
+        "fp": 9,
+        "fn": 0,
+        "tn": 1
+      },
+      "precision": 0.6896551724137931,
+      "recall": 1.0,
+      "f1": 0.8163265306122449,
+      "healthy_false_alert_rate": 0.9
+    }
+  },
+  "affected_endpoint_by_scenario": {
+    "slow-query": {
+      "ml": {
+        "samples": 30,
+        "scored": 30,
+        "abstained": 0,
+        "confusion_matrix": {
+          "tp": 30,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0
+        },
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "healthy_false_alert_rate": null
+      },
+      "baseline": {
+        "samples": 30,
+        "scored": 30,
+        "abstained": 0,
+        "confusion_matrix": {
+          "tp": 30,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0
+        },
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "healthy_false_alert_rate": null
+      }
+    },
+    "healthy": {
+      "ml": {
+        "samples": 30,
+        "scored": 30,
+        "abstained": 0,
+        "confusion_matrix": {
+          "tp": 0,
+          "fp": 1,
+          "fn": 0,
+          "tn": 29
+        },
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "healthy_false_alert_rate": 0.03333333333333333
+      },
+      "baseline": {
+        "samples": 30,
+        "scored": 30,
+        "abstained": 0,
+        "confusion_matrix": {
+          "tp": 0,
+          "fp": 1,
+          "fn": 0,
+          "tn": 29
+        },
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "healthy_false_alert_rate": 0.03333333333333333
+      }
+    },
+    "high-jitter": {
+      "ml": {
+        "samples": 30,
+        "scored": 30,
+        "abstained": 0,
+        "confusion_matrix": {
+          "tp": 29,
+          "fp": 0,
+          "fn": 1,
+          "tn": 0
+        },
+        "precision": 1.0,
+        "recall": 0.9666666666666667,
+        "f1": 0.983050847457627,
+        "healthy_false_alert_rate": null
+      },
+      "baseline": {
+        "samples": 30,
+        "scored": 30,
+        "abstained": 0,
+        "confusion_matrix": {
+          "tp": 29,
+          "fp": 0,
+          "fn": 1,
+          "tn": 0
+        },
+        "precision": 1.0,
+        "recall": 0.9666666666666667,
+        "f1": 0.983050847457627,
+        "healthy_false_alert_rate": null
+      }
+    }
+  },
+  "limitations": [
+    "Windows within a run are correlated; use run-level results too.",
+    "Only the included endpoints, workload profile, and injected faults were evaluated.",
+    "Anomaly scores do not diagnose root cause or guarantee release safety.",
+    "A 5% validation window budget does not imply 5% run-level false alerts.",
+    "Operational flags include a shared 30%/10 ms budget; raw novelty results are also reported."
+  ]
+}

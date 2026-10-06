@@ -1,0 +1,503 @@
+{
+  "description": "Controlled HTTP testbed; independent runs, not production traffic",
+  "preset": "full",
+  "workload": {
+    "windows": 3,
+    "probes_per_window": 25,
+    "concurrency": 5,
+    "timeout_seconds": 0.3,
+    "load": 1.0
+  },
+  "experiments": [
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81255,
+      "severity": 1.0,
+      "run_id": 72
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 82122,
+      "severity": 0.65,
+      "run_id": 73
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81102,
+      "severity": 1.0,
+      "run_id": 74
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 81714,
+      "severity": 1.0,
+      "run_id": 75
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81119,
+      "severity": 1.0,
+      "run_id": 76
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81374,
+      "severity": 1.0,
+      "run_id": 77
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 81663,
+      "severity": 1.0,
+      "run_id": 78
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81306,
+      "severity": 1.0,
+      "run_id": 79
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81272,
+      "severity": 1.0,
+      "run_id": 80
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 81901,
+      "severity": 1.5499999999999998,
+      "run_id": 81
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 81850,
+      "severity": 0.65,
+      "run_id": 82
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 81680,
+      "severity": 1.0,
+      "run_id": 83
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81068,
+      "severity": 1.0,
+      "run_id": 84
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81340,
+      "severity": 1.0,
+      "run_id": 85
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 82054,
+      "severity": 0.65,
+      "run_id": 86
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81425,
+      "severity": 1.0,
+      "run_id": 87
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81493,
+      "severity": 1.0,
+      "run_id": 88
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 81561,
+      "severity": 1.0,
+      "run_id": 89
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 81748,
+      "severity": 1.0,
+      "run_id": 90
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 81816,
+      "severity": 1.0,
+      "run_id": 91
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81136,
+      "severity": 1.0,
+      "run_id": 92
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81323,
+      "severity": 1.0,
+      "run_id": 93
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81391,
+      "severity": 1.0,
+      "run_id": 94
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81187,
+      "severity": 1.0,
+      "run_id": 95
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 82037,
+      "severity": 1.5499999999999998,
+      "run_id": 96
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 81782,
+      "severity": 1.0,
+      "run_id": 97
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 81935,
+      "severity": 0.95,
+      "run_id": 98
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 82156,
+      "severity": 1.25,
+      "run_id": 99
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 81612,
+      "severity": 1.0,
+      "run_id": 100
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81408,
+      "severity": 1.0,
+      "run_id": 101
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 81510,
+      "severity": 1.0,
+      "run_id": 102
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 81884,
+      "severity": 1.25,
+      "run_id": 103
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81153,
+      "severity": 1.0,
+      "run_id": 104
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 81833,
+      "severity": 1.0,
+      "run_id": 105
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81357,
+      "severity": 1.0,
+      "run_id": 106
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 81952,
+      "severity": 1.25,
+      "run_id": 107
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81170,
+      "severity": 1.0,
+      "run_id": 108
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81000,
+      "severity": 1.0,
+      "run_id": 109
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 82088,
+      "severity": 1.25,
+      "run_id": 110
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 82020,
+      "severity": 1.25,
+      "run_id": 111
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 82105,
+      "severity": 1.5499999999999998,
+      "run_id": 112
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 81867,
+      "severity": 0.95,
+      "run_id": 113
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81442,
+      "severity": 1.0,
+      "run_id": 114
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 82003,
+      "severity": 0.95,
+      "run_id": 115
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 81697,
+      "severity": 1.0,
+      "run_id": 116
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 81765,
+      "severity": 1.0,
+      "run_id": 117
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81204,
+      "severity": 1.0,
+      "run_id": 118
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 82139,
+      "severity": 0.95,
+      "run_id": 119
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 81918,
+      "severity": 0.65,
+      "run_id": 120
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 81646,
+      "severity": 1.0,
+      "run_id": 121
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 81544,
+      "severity": 1.0,
+      "run_id": 122
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 82173,
+      "severity": 1.5499999999999998,
+      "run_id": 123
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 82071,
+      "severity": 0.95,
+      "run_id": 124
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 81986,
+      "severity": 0.65,
+      "run_id": 125
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81017,
+      "severity": 1.0,
+      "run_id": 126
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81034,
+      "severity": 1.0,
+      "run_id": 127
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81459,
+      "severity": 1.0,
+      "run_id": 128
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 81629,
+      "severity": 1.0,
+      "run_id": 129
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81085,
+      "severity": 1.0,
+      "run_id": 130
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 81578,
+      "severity": 1.0,
+      "run_id": 131
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 81969,
+      "severity": 1.5499999999999998,
+      "run_id": 132
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 81799,
+      "severity": 1.0,
+      "run_id": 133
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 81731,
+      "severity": 1.0,
+      "run_id": 134
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81221,
+      "severity": 1.0,
+      "run_id": 135
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81289,
+      "severity": 1.0,
+      "run_id": 136
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81476,
+      "severity": 1.0,
+      "run_id": 137
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 81527,
+      "severity": 1.0,
+      "run_id": 138
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 81595,
+      "severity": 1.0,
+      "run_id": 139
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81051,
+      "severity": 1.0,
+      "run_id": 140
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 81238,
+      "severity": 1.0,
+      "run_id": 141
+    }
+  ]
+}

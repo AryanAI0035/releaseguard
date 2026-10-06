@@ -1,0 +1,503 @@
+{
+  "description": "Controlled HTTP testbed; independent runs, not production traffic",
+  "preset": "full",
+  "workload": {
+    "windows": 3,
+    "probes_per_window": 25,
+    "concurrency": 5,
+    "timeout_seconds": 0.3,
+    "load": 1.0
+  },
+  "experiments": [
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1255,
+      "severity": 1.0,
+      "run_id": 1
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 2122,
+      "severity": 0.65,
+      "run_id": 2
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1102,
+      "severity": 1.0,
+      "run_id": 3
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 1714,
+      "severity": 1.0,
+      "run_id": 4
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1119,
+      "severity": 1.0,
+      "run_id": 5
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1374,
+      "severity": 1.0,
+      "run_id": 6
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 1663,
+      "severity": 1.0,
+      "run_id": 7
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1306,
+      "severity": 1.0,
+      "run_id": 8
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1272,
+      "severity": 1.0,
+      "run_id": 9
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 1901,
+      "severity": 1.5499999999999998,
+      "run_id": 10
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 1850,
+      "severity": 0.65,
+      "run_id": 11
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 1680,
+      "severity": 1.0,
+      "run_id": 12
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1068,
+      "severity": 1.0,
+      "run_id": 13
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1340,
+      "severity": 1.0,
+      "run_id": 14
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 2054,
+      "severity": 0.65,
+      "run_id": 15
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1425,
+      "severity": 1.0,
+      "run_id": 16
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1493,
+      "severity": 1.0,
+      "run_id": 17
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 1561,
+      "severity": 1.0,
+      "run_id": 18
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 1748,
+      "severity": 1.0,
+      "run_id": 19
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 1816,
+      "severity": 1.0,
+      "run_id": 20
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1136,
+      "severity": 1.0,
+      "run_id": 21
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1323,
+      "severity": 1.0,
+      "run_id": 22
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1391,
+      "severity": 1.0,
+      "run_id": 23
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1187,
+      "severity": 1.0,
+      "run_id": 24
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 2037,
+      "severity": 1.5499999999999998,
+      "run_id": 25
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 1782,
+      "severity": 1.0,
+      "run_id": 26
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 1935,
+      "severity": 0.95,
+      "run_id": 27
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 2156,
+      "severity": 1.25,
+      "run_id": 28
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 1612,
+      "severity": 1.0,
+      "run_id": 29
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1408,
+      "severity": 1.0,
+      "run_id": 30
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 1510,
+      "severity": 1.0,
+      "run_id": 31
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 1884,
+      "severity": 1.25,
+      "run_id": 32
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1153,
+      "severity": 1.0,
+      "run_id": 33
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 1833,
+      "severity": 1.0,
+      "run_id": 35
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1357,
+      "severity": 1.0,
+      "run_id": 36
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 1952,
+      "severity": 1.25,
+      "run_id": 37
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1170,
+      "severity": 1.0,
+      "run_id": 38
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1000,
+      "severity": 1.0,
+      "run_id": 39
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 2088,
+      "severity": 1.25,
+      "run_id": 40
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 2020,
+      "severity": 1.25,
+      "run_id": 41
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 2105,
+      "severity": 1.5499999999999998,
+      "run_id": 42
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 1867,
+      "severity": 0.95,
+      "run_id": 43
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1442,
+      "severity": 1.0,
+      "run_id": 44
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 2003,
+      "severity": 0.95,
+      "run_id": 45
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 1697,
+      "severity": 1.0,
+      "run_id": 46
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 1765,
+      "severity": 1.0,
+      "run_id": 47
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1204,
+      "severity": 1.0,
+      "run_id": 48
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 2139,
+      "severity": 0.95,
+      "run_id": 49
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 1918,
+      "severity": 0.65,
+      "run_id": 50
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 1646,
+      "severity": 1.0,
+      "run_id": 51
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 1544,
+      "severity": 1.0,
+      "run_id": 52
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 2173,
+      "severity": 1.5499999999999998,
+      "run_id": 53
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 2071,
+      "severity": 0.95,
+      "run_id": 54
+    },
+    {
+      "partition": "test",
+      "variant": "slow-query",
+      "seed": 1986,
+      "severity": 0.65,
+      "run_id": 55
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1017,
+      "severity": 1.0,
+      "run_id": 56
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1034,
+      "severity": 1.0,
+      "run_id": 57
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1459,
+      "severity": 1.0,
+      "run_id": 58
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 1629,
+      "severity": 1.0,
+      "run_id": 59
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1085,
+      "severity": 1.0,
+      "run_id": 60
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 1578,
+      "severity": 1.0,
+      "run_id": 61
+    },
+    {
+      "partition": "test",
+      "variant": "high-jitter",
+      "seed": 1969,
+      "severity": 1.5499999999999998,
+      "run_id": 62
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 1799,
+      "severity": 1.0,
+      "run_id": 63
+    },
+    {
+      "partition": "test",
+      "variant": "healthy",
+      "seed": 1731,
+      "severity": 1.0,
+      "run_id": 64
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1221,
+      "severity": 1.0,
+      "run_id": 65
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1289,
+      "severity": 1.0,
+      "run_id": 66
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1476,
+      "severity": 1.0,
+      "run_id": 67
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 1527,
+      "severity": 1.0,
+      "run_id": 68
+    },
+    {
+      "partition": "validation",
+      "variant": "healthy",
+      "seed": 1595,
+      "severity": 1.0,
+      "run_id": 69
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1051,
+      "severity": 1.0,
+      "run_id": 70
+    },
+    {
+      "partition": "training",
+      "variant": "healthy",
+      "seed": 1238,
+      "severity": 1.0,
+      "run_id": 71
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "scope": "Controlled active-probe testbed, not production accuracy",
+  "threshold_policy": "95th percentile of held-out healthy validation scores",
+  "window_level": {
+    "ml": {
+      "samples": 270,
+      "scored": 270,
+      "abstained": 0,
+      "confusion_matrix": {
+        "tp": 60,
+        "fp": 57,
+        "fn": 0,
+        "tn": 153
+      },
+      "precision": 0.5128205128205128,
+      "recall": 1.0,
+      "f1": 0.6779661016949152,
+      "healthy_false_alert_rate": 0.2714285714285714
+    },
+    "baseline": {
+      "samples": 270,
+      "scored": 270,
+      "abstained": 0,
+      "confusion_matrix": {
+        "tp": 60,
+        "fp": 37,
+        "fn": 0,
+        "tn": 173
+      },
+      "precision": 0.6185567010309279,
+      "recall": 1.0,
+      "f1": 0.7643312101910829,
+      "healthy_false_alert_rate": 0.1761904761904762
+    }
+  },
+  "run_level": {
+    "ml": {
+      "samples": 30,
+      "scored": 30,
+      "abstained": 0,
+      "confusion_matrix": {
+        "tp": 20,
+        "fp": 9,
+        "fn": 0,
+        "tn": 1
+      },
+      "precision": 0.6896551724137931,
+      "recall": 1.0,
+      "f1": 0.8163265306122449,
+      "healthy_false_alert_rate": 0.9
+    },
+    "baseline": {
+      "samples": 30,
+      "scored": 30,
+      "abstained": 0,
+      "confusion_matrix": {
+        "tp": 20,
+        "fp": 6,
+        "fn": 0,
+        "tn": 4
+      },
+      "precision": 0.7692307692307693,
+      "recall": 1.0,
+      "f1": 0.8695652173913044,
+      "healthy_false_alert_rate": 0.6
+    }
+  },
+  "affected_endpoint_by_scenario": {
+    "slow-query": {
+      "ml": {
+        "samples": 30,
+        "scored": 30,
+        "abstained": 0,
+        "confusion_matrix": {
+          "tp": 30,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0
+        },
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "healthy_false_alert_rate": null
+      },
+      "baseline": {
+        "samples": 30,
+        "scored": 30,
+        "abstained": 0,
+        "confusion_matrix": {
+          "tp": 30,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0
+        },
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "healthy_false_alert_rate": null
+      }
+    },
+    "healthy": {
+      "ml": {
+        "samples": 30,
+        "scored": 30,
+        "abstained": 0,
+        "confusion_matrix": {
+          "tp": 0,
+          "fp": 5,
+          "fn": 0,
+          "tn": 25
+        },
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "healthy_false_alert_rate": 0.16666666666666666
+      },
+      "baseline": {
+        "samples": 30,
+        "scored": 30,
+        "abstained": 0,
+        "confusion_matrix": {
+          "tp": 0,
+          "fp": 3,
+          "fn": 0,
+          "tn": 27
+        },
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "healthy_false_alert_rate": 0.1
+      }
+    },
+    "high-jitter": {
+      "ml": {
+        "samples": 30,
+        "scored": 30,
+        "abstained": 0,
+        "confusion_matrix": {
+          "tp": 30,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0
+        },
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "healthy_false_alert_rate": null
+      },
+      "baseline": {
+        "samples": 30,
+        "scored": 30,
+        "abstained": 0,
+        "confusion_matrix": {
+          "tp": 30,
+          "fp": 0,
+          "fn": 0,
+          "tn": 0
+        },
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "healthy_false_alert_rate": null
+      }
+    }
+  },
+  "limitations": [
+    "Windows within a run are correlated; use run-level results too.",
+    "Only the included endpoints, workload profile, and injected faults were evaluated.",
+    "Anomaly scores do not diagnose root cause or guarantee release safety.",
+    "A 5% validation window budget does not imply 5% run-level false alerts."
+  ]
+}
